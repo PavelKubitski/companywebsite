@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CURL Support</title>
+<style>
+  :root{
+    --bg:#0f1020;
+    --bg-2:#15172e;
+    --card:#1b1d38;
+    --ink:#eef0ff;
+    --ink-soft:#a7abce;
+    --ink-faint:#6f74a0;
+    --accent:#7c6cff;
+    --accent-2:#b07bff;
+    --line:rgba(255,255,255,.08);
+    --radius:20px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);
+    background:
+      radial-gradient(1200px 600px at 50% -10%, rgba(124,108,255,.22), transparent 60%),
+      radial-gradient(900px 500px at 90% 110%, rgba(176,123,255,.16), transparent 55%),
+      var(--bg);
+    min-height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:24px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .card{
+    width:100%;
+    max-width:440px;
+    background:linear-gradient(180deg, var(--card), var(--bg-2));
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:40px 32px 32px;
+    box-shadow:0 30px 80px -30px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.04);
+    text-align:center;
+    animation:rise .6s cubic-bezier(.2,.8,.2,1) both;
+  }
+  .badge{
+    width:60px;height:60px;margin:0 auto 22px;
+    border-radius:16px;
+    display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(140deg, var(--accent), var(--accent-2));
+    box-shadow:0 10px 30px -8px rgba(124,108,255,.6);
+  }
+  .badge svg{width:30px;height:30px;display:block}
+  .eyebrow{
+    font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--ink-faint);font-weight:600;margin-bottom:10px;
+  }
+  h1{font-size:26px;line-height:1.2;font-weight:680;letter-spacing:-.01em;margin-bottom:12px}
+  p.lead{color:var(--ink-soft);font-size:15px;line-height:1.55;margin-bottom:28px}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:9px;
+    width:100%;
+    padding:15px 20px;
+    border-radius:13px;
+    background:linear-gradient(140deg, var(--accent), var(--accent-2));
+    color:#fff;font-size:15.5px;font-weight:620;letter-spacing:.01em;
+    text-decoration:none;
+    border:none;cursor:pointer;
+    box-shadow:0 12px 28px -10px rgba(124,108,255,.7);
+    transition:transform .15s ease, box-shadow .15s ease, filter .15s ease;
+  }
+  .btn:hover{transform:translateY(-1px);filter:brightness(1.06);box-shadow:0 16px 34px -10px rgba(124,108,255,.8)}
+  .btn:active{transform:translateY(0)}
+  .btn:focus-visible{outline:2px solid #fff;outline-offset:3px}
+  .btn svg{width:18px;height:18px}
+  .addr{
+    margin-top:18px;
+    font-size:14px;color:var(--ink-soft);
+  }
+  .addr a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:1px}
+  .addr a:hover{border-bottom-color:var(--accent-2)}
+  .hint{
+    margin-top:26px;padding-top:20px;border-top:1px solid var(--line);
+    font-size:12.5px;color:var(--ink-faint);line-height:1.5;
+  }
+  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){
+    .card{animation:none}
+    .btn{transition:none}
+  }
+</style>
+</head>
+<body>
+  <main class="card">
+    <div class="badge" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="5" width="18" height="14" rx="2.5"/>
+        <path d="m3.5 7 8.5 6 8.5-6"/>
+      </svg>
+    </div>
+    <div class="eyebrow">CURL · Story Maker &amp; Story Art</div>
+    <h1>Contact Support</h1>
+    <p class="lead">Questions, feedback, or help with your subscription? Send us an email and we'll get back to you.</p>
+
+    <a class="btn" id="mailBtn" href="mailto:support@lineraapps.com?subject=CURL%20Support%20Request">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="5" width="18" height="14" rx="2"/>
+        <path d="m3.5 7 8.5 6 8.5-6"/>
+      </svg>
+      Email Support
+    </a>
+
+    <p class="addr">or write to <a href="mailto:support@lineraapps.com?subject=CURL%20Support%20Request">support@lineraapps.com</a></p>
+
+    <p class="hint">Tap the button to open your mail app. If nothing happens, copy the address above into your email client.</p>
+  </main>
+
+  <script>
+    // Gently try to open the user's mail client on load. The visible button
+    // above is the reliable fallback if the browser/device has no mail app.
+    (function () {
+      var mailto = "mailto:support@lineraapps.com?subject=CURL%20Support%20Request";
+      window.setTimeout(function () {
+        try { window.location.href = mailto; } catch (e) {}
+      }, 700);
+    })();
+  </script>
+</body>
+</html>
